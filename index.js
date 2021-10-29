@@ -1,20 +1,21 @@
 
 const inquirer = require('inquirer');
 const Manager = require('./lib/Manager');
+const Employee = require('./lib/Employee');
+const generatePage = require('./src/generateHTML');
 
-
-//first prompt for MANAGER
-//prompt should ask questions 
-//trigger constructor passing answers as params
-
-function Builder() {
+class Builder {
+    constructor() {
     this.manager;
-    
-    Builder.prototype.getManager = function() {
+    this.engineer = [];
+    this.intern = [];
+    }
+
+    getManager () {
         inquirer.prompt([
             {
             type: 'text',
-            name: 'managerName',
+            name: 'name',
             message: "What is the Team Manager's Name?"
             },
             {
@@ -33,14 +34,45 @@ function Builder() {
             message: "What is the Team Manager's office number?"
             }
         ])
+        .then(({ name, employeeID, email, officeNum }) => {
+        this.manager = new Manager(name, employeeID, email, officeNum);
+        console.log(this.manager)
+        this.setNextFunction();
+        })
+    }
+    //get engineer info
+    createEngineer () {
+        inquirer.prompt([
+            {
+            type: 'text',
+            name: 'managerName',
+            message: "What is your engineers Name?"
+            },
+            {
+            type: 'text',
+            name: 'employeeID',
+            message: "What is your engineers employee ID Number?"
+            },
+            {
+            type: 'text',
+            name: 'email',
+            message: "What is your engineers email?"
+            },
+            {
+            type: 'text',
+            name: 'officeNum',
+            message: "What is your engineers office number?"
+            }
+        ])
         .then(({ managerName, employeeID, email, officeNum }) => {
         this.manager = new Manager(managerName, employeeID, email, officeNum);
         console.log(this.manager)
         this.setNextFunction();
         })
     }
+//get intern info
 
-    Builder.prototype.setNextFunction = function() {
+    setNextFunction () {
         inquirer.prompt({
         type: 'list', 
         name: 'nextAction',
@@ -55,6 +87,7 @@ function Builder() {
             }
             if (nextAction === 'Finish Team') {
                 console.log('finsih team func triggered!')
+                this.finishTeam();
             }
         })
     }
