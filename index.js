@@ -2,6 +2,8 @@
 const inquirer = require('inquirer');
 const Manager = require('./lib/Manager');
 const Employee = require('./lib/Employee');
+const Engineer = require('./lib/Engineer');
+const Intern = require('./lib/Intern');
 const generatePage = require('./src/generateHTML');
 
 class Builder {
@@ -40,13 +42,13 @@ class Builder {
         this.setNextFunction();
         })
     }
-    //get engineer info
+    
     createEngineer () {
         inquirer.prompt([
             {
             type: 'text',
-            name: 'managerName',
-            message: "What is your engineers Name?"
+            name: 'name',
+            message: "What is your engineers name?"
             },
             {
             type: 'text',
@@ -60,17 +62,46 @@ class Builder {
             },
             {
             type: 'text',
-            name: 'officeNum',
-            message: "What is your engineers office number?"
+            name: 'github',
+            message: "What is your engineers github name?"
             }
         ])
-        .then(({ managerName, employeeID, email, officeNum }) => {
-        this.manager = new Manager(managerName, employeeID, email, officeNum);
-        console.log(this.manager)
+        .then(({ name, employeeID, email, github }) => {
+        this.engineer.push(new Engineer(name, employeeID, email, github));
+        console.log(this.engineer)
         this.setNextFunction();
         })
     }
-//get intern info
+
+    createIntern() {
+        inquirer.prompt([
+            {
+            type: 'text',
+            name: 'name',
+            message: "What is the Intern's Name?"
+            },
+            {
+            type: 'text',
+            name: 'employeeID',
+            message: "What is the Intern's employee ID Number?"
+            },
+            {
+            type: 'text',
+            name: 'email',
+            message: "What is the Intern's email?"
+            },
+            {
+            type: 'text',
+            name: 'school',
+            message: "What is the Intern's school?"
+            }
+        ])
+        .then(({ name, employeeID, email, school }) => {
+        this.intern.push(new Intern(name, employeeID, email, school));
+        console.log(this.intern)
+        this.setNextFunction();
+        })
+    }
 
     setNextFunction () {
         inquirer.prompt({
@@ -80,10 +111,10 @@ class Builder {
         choices: ['Enter Engineer', 'Enter Intern', 'Finish Team']
         }).then(({nextAction}) => {
             if (nextAction === 'Enter Engineer') {
-                console.log('engineer func triggered!')
+                this.createEngineer();
             }
             if (nextAction === 'Enter Intern') {
-                console.log('intern func triggered!')
+                this.createIntern();
             }
             if (nextAction === 'Finish Team') {
                 console.log('finsih team func triggered!')
@@ -91,6 +122,9 @@ class Builder {
             }
         })
     }
+
+    //finish/generate function!
+
 }
 
 new Builder().getManager();
