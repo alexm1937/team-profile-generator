@@ -5,3 +5,9 @@ function testData(employees) {
 }
 
 module.exports = testData;
+
+// function generatePage(employees) {
+//     employees.forEach((employee) => {
+//         console.log(employee.name)
+//     });
+// }

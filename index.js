@@ -114,10 +114,10 @@ const employees = [];
             if (nextAction === 'Finish Team') {
                 console.log('finish func trigger')
                 generatePage(employees)
-                
             }
         })
     }
+
 
 getManager()
 

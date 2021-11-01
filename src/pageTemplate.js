@@ -1,25 +1,24 @@
 
-
-    //for each loop for each employee? loop for each arr type
-
-        // return `
-        // <div class="card" style="width: 18rem;">
-        //         <div class="card-body">
-        //             <h5 class="card-title">${this.getName()}</h5>
-        //             <h6 class="card-subtitle mb-2 text-muted">${this.getRole()}</h6>
-        //             <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-        //           <a href="#" class="card-link">Card link</a>
-        //           <a href="#" class="card-link">Another link</a>
-        //         </div>
-        //   </div>
-        // `
-function generateCards() {
-    console.log(this.getName());
-}
-
-function generatePage(employees) {
-    console.log(
+function generateCards(employees) {
+    if(!employees) {
+        return '';
+    }
+    employees.forEach(function(employee) {
+        return `
+        <div class="card" style="width: 18rem;">
+                <div class="card-body">
+                    <h5 class="card-title">${employee.name}</h5>
+                    <h6 class="card-subtitle mb-2 text-muted">${employee.role}</h6>
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                  <a href="#" class="card-link">Card link</a>
+                  <a href="#" class="card-link">Another link</a>
+                </div>
+          </div>
         `
+    })
+}
+function generatePage(employees) {
+    return `
     <!DOCTYPE html>
     <html lang="en">
     <head>
@@ -38,12 +37,12 @@ function generatePage(employees) {
     <div id="hold-cards">
 
         <!-- test card -->
-        ${employees.forEach(generateCards())}
+        ${generateCards(employees)}
     </div>
     </body>
-</html>` );
-    }
+    </html>`;
 
+}
 
+module.exports = generatePage;
 
-module.exports = generatePage
