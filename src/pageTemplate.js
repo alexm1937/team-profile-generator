@@ -3,9 +3,12 @@ function generateCards(employees) {
     if(!employees) {
         return '';
     }
+    var cards = []
+    //employees.forEach takes in a function to "run for each element in the employees array"
     employees.forEach(function(employee) {
-        return `
-        <div class="card" style="width: 18rem;">
+        /*but there's no point in returning anything in this callback function.*/
+        // return 
+        cards.push(`<div class="card" style="width: 18rem;">
                 <div class="card-body">
                     <h5 class="card-title">${employee.name}</h5>
                     <h6 class="card-subtitle mb-2 text-muted">${employee.role}</h6>
@@ -14,8 +17,11 @@ function generateCards(employees) {
                   <a href="#" class="card-link">Another link</a>
                 </div>
           </div>
-        `
+        `)
+        //perhaps push everything into an array here instead!
     })
+    //then, in this space, return something using the cards array. Probably a cards.join() of some sort.
+    return cards
 }
 function generatePage(employees) {
     return `
@@ -44,5 +50,5 @@ function generatePage(employees) {
 
 }
 
-module.exports = generatePage;
+module.exports = generatePage
 
