@@ -14,11 +14,12 @@
         //   </div>
         // `
 function generateCards() {
-    console.log(this.getName())
+    console.log(this.getName());
 }
 
 function generatePage(employees) {
-    console.log( `
+    console.log(
+        `
     <!DOCTYPE html>
     <html lang="en">
     <head>
@@ -37,11 +38,12 @@ function generatePage(employees) {
     <div id="hold-cards">
 
         <!-- test card -->
-        ${employees.forEach(generateCards)}
+        ${employees.forEach(generateCards())}
     </div>
     </body>
-</html>` )
-}
+</html>` );
+    }
+
 
 
 module.exports = generatePage
