@@ -5,7 +5,7 @@ const Employee = require('./lib/Employee');
 const Engineer = require('./lib/Engineer');
 const Intern = require('./lib/Intern');
 //const generatePage = require('./src/pageTemplate');
-//const testData = require('./src/testData');
+const testData = require('./src/testData');
 
 const employees = [];
 
@@ -112,19 +112,19 @@ const employees = [];
                 createIntern();
             }
             if (nextAction === 'Finish Team') {
-                // console.log('finsih team func triggered!')
-                // finishTeam();
-                return;
+                console.log('finish func trigger')
+                testData(employees);
+                
             }
         })
     }
 
-    const finishTeam = () => {
-        //logs entire builder object
-        // console.log(this)
-        const team = this
-        generateTeam(team);
-    }
+    // const finishTeam = () => {
+    //     //logs entire builder object
+    //     // console.log(this)
+    //     const team = this
+    //     generateTeam(team);
+    // }
 
 getManager()
 
