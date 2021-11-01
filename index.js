@@ -7,15 +7,9 @@ const Intern = require('./lib/Intern');
 //const generatePage = require('./src/pageTemplate');
 //const testData = require('./src/testData');
 
+const employees = [];
 
-class Builder {
-    constructor() {
-    this.manager;
-    this.engineer = [];
-    this.intern = [];
-    }
-
-    getManager () {
+    const getManager = () => {
         inquirer.prompt([
             {
             type: 'text',
@@ -39,13 +33,13 @@ class Builder {
             }
         ])
         .then(({ name, employeeID, email, officeNum }) => {
-        this.manager = new Manager(name, employeeID, email, officeNum);
-        console.log(this.manager)
-        this.setNextFunction();
+        employees.push(new Manager(name, employeeID, email, officeNum));
+        //console.log(employees)
+        setNextFunction();
         })
     }
     
-    createEngineer () {
+    const createEngineer = () => {
         inquirer.prompt([
             {
             type: 'text',
@@ -69,13 +63,12 @@ class Builder {
             }
         ])
         .then(({ name, employeeID, email, github }) => {
-        this.engineer.push(new Engineer(name, employeeID, email, github));
-        console.log(this.engineer)
-        this.setNextFunction();
+        employees.push(new Engineer(name, employeeID, email, github));
+        setNextFunction();
         })
     }
 
-    createIntern() {
+    const createIntern = () => {
         inquirer.prompt([
             {
             type: 'text',
@@ -99,13 +92,13 @@ class Builder {
             }
         ])
         .then(({ name, employeeID, email, school }) => {
-        this.intern.push(new Intern(name, employeeID, email, school));
-        console.log(this.intern)
-        this.setNextFunction();
+        employees.push(new Intern(name, employeeID, email, school));
+        console.log(employees)
+        setNextFunction();
         })
     }
 
-    setNextFunction () {
+    const setNextFunction = () => {
         inquirer.prompt({
         type: 'list', 
         name: 'nextAction',
@@ -113,26 +106,25 @@ class Builder {
         choices: ['Enter Engineer', 'Enter Intern', 'Finish Team']
         }).then(({nextAction}) => {
             if (nextAction === 'Enter Engineer') {
-                this.createEngineer();
+                createEngineer();
             }
             if (nextAction === 'Enter Intern') {
-                this.createIntern();
+                createIntern();
             }
             if (nextAction === 'Finish Team') {
-                console.log('finsih team func triggered!')
-                this.finishTeam();
+                // console.log('finsih team func triggered!')
+                // finishTeam();
+                return;
             }
         })
     }
 
-    finishTeam() {
+    const finishTeam = () => {
         //logs entire builder object
         // console.log(this)
         const team = this
         generateTeam(team);
     }
 
-}
-
-new Builder().getManager()
+getManager()
 
