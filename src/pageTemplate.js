@@ -16,8 +16,7 @@ const generateCards = () => {
       email: 'a',
       roll: 'employee',
       school: 'a'
-    }
-    ]
+    }]
     //for each loop for each employee? loop for each arr type
     team.forEach((item) => {
         
