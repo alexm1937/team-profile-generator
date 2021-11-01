@@ -4,7 +4,9 @@ const Manager = require('./lib/Manager');
 const Employee = require('./lib/Employee');
 const Engineer = require('./lib/Engineer');
 const Intern = require('./lib/Intern');
-const generatePage = require('./src/generateHTML');
+//const generatePage = require('./src/pageTemplate');
+//const testData = require('./src/testData');
+
 
 class Builder {
     constructor() {
@@ -123,8 +125,14 @@ class Builder {
         })
     }
 
-    //finish/generate function!
+    finishTeam() {
+        //logs entire builder object
+        // console.log(this)
+        const team = this
+        generateTeam(team);
+    }
 
 }
 
-new Builder().getManager();
+new Builder().getManager()
+
