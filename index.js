@@ -121,14 +121,14 @@ const employees = [];
 
     const writeFile = fileContent => {
         return new Promise((resolve, reject) => {
-            fs.writeFile('./dist/index.html', fileContent, err => {
+            fs.writeFile('./dist/yourTeam.html', fileContent, err => {
                 if(err) {
                     reject(err);
                     return;
                 }
                 resolve({
                     ok: true,
-                    message: 'File created!'
+                    message: 'File created! Please navigate to ./dist/ to view yourTeam.html'
                 });
             });
         });

@@ -10,7 +10,7 @@ function generateCards(employees) {
             if(!employee.github) {
             return '';
             }
-            return `<li class="list-group-item"><a href="https://github.com/${employee.github}/" class="card-link">GitHub</a>`
+            return `<li class="list-group-item"><a href="https://github.com/${employee.github}/" target="_blank" class="card-link">GitHub</a>`
             }
         const genOfficeNum = () => {
             if(!employee.officeNum) {
