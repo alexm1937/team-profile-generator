@@ -17,6 +17,7 @@ An application to save time! Generate a webpage with all your employees info in 
 
 ## Usage
   Once you have prequisites installed, to run the application simply open terminal from the repo/program parent folder. (The folder that this readme is found in!). In the terminal, you can verify you are in the correct folder with command "ls" and if you see a list of files and folders including file "index" you're in the right spot! Type "node index" and the app will start running! Answer the prompts, these will generate a card for each employee!
+  See my walk through video here: https://watch.screencastify.com/v/XYaoxaW0kxmr9wDlhK2v
 
 ## License
 Copyright Notice 2021 alexm1937 under The Unlicense License: </br>
