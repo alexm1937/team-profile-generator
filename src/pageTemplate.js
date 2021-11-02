@@ -4,24 +4,45 @@ function generateCards(employees) {
         return '';
     }
     var cards = []
-    //employees.forEach takes in a function to "run for each element in the employees array"
     employees.forEach(function(employee) {
-        /*but there's no point in returning anything in this callback function.*/
-        // return 
-        cards.push(`<div class="card" style="width: 18rem;">
-                <div class="card-body">
-                    <h5 class="card-title">${employee.name}</h5>
-                    <h6 class="card-subtitle mb-2 text-muted">${employee.role}</h6>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                  <a href="#" class="card-link">Card link</a>
-                  <a href="#" class="card-link">Another link</a>
-                </div>
+
+        const genGitHub = () => {
+            if(!employee.github) {
+            return '';
+            }
+            return `<li class="list-group-item"><a href="https://github.com/${employee.github}/" class="card-link">GitHub</a>`
+            }
+        const genOfficeNum = () => {
+            if(!employee.officeNum) {
+            return '';
+            }
+            return `<li class="list-group-item"><a href="tel:${employee.officeNum}">${employee.officeNum}</a>`
+            }
+        const genSchool = () => {
+            if(!employee.school) {
+                return '';
+            }
+            return `<li class="list-group-item">${employee.school}</a>`
+        }
+
+        cards.push(`<div class="col">
+                <div class="card m-2"">
+                <div class="card-header">
+                ${employee.name} 
+                </div>        
+                <ul class="list-group list-group-flush">
+                <li class="list-group-item">${employee.role}
+                <li class="list-group-item">${employee.employeeID}
+                <li class="list-group-item"><a href="mailto:${employee.email}" class="card-link">Email</a>
+                ${genGitHub(employee.github)}
+                ${genOfficeNum(employee.officeNum)}
+                ${genSchool(employee.school)}
+                </ul>
+          </div>
           </div>
         `)
-        //perhaps push everything into an array here instead!
     })
-    //then, in this space, return something using the cards array. Probably a cards.join() of some sort.
-    return cards
+    return cards.join(" ");
 }
 function generatePage(employees) {
     return `
@@ -36,14 +57,18 @@ function generatePage(employees) {
     </head>
 
     <body>
-    <div class="bg-danger w-100 height-25">
-        testdiv
-    </div>
-
-    <div id="hold-cards">
+    <nav class="navbar navbar-light bg-light">
+    <div class="container-fluid">
+    <span class="navbar-brand mb-0 h1">The Team!</span>
+     </div>
+    </nav>
+    <div class="container">
+    <div class="row row-cols-1 row-cols-md-3 g-4">
 
         <!-- test card -->
         ${generateCards(employees)}
+
+    </div>
     </div>
     </body>
     </html>`;

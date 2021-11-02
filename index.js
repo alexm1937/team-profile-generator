@@ -1,7 +1,7 @@
 
+const fs = require('fs');
 const inquirer = require('inquirer');
 const Manager = require('./lib/Manager');
-const Employee = require('./lib/Employee');
 const Engineer = require('./lib/Engineer');
 const Intern = require('./lib/Intern');
 const generatePage = require('./src/pageTemplate');
@@ -93,7 +93,6 @@ const employees = [];
         ])
         .then(({ name, employeeID, email, school }) => {
         employees.push(new Intern(name, employeeID, email, school));
-        console.log(employees)
         setNextFunction();
         })
     }
@@ -112,12 +111,29 @@ const employees = [];
                 createIntern();
             }
             if (nextAction === 'Finish Team') {
-                console.log('finish func trigger')
                 var htmlString = generatePage(employees)
-                console.log(htmlString)
+                writeFile(htmlString)
+                .then(writeFileResponse => {
+                    console.log(writeFileResponse);
+                })
             }
         })
     }
+
+    const writeFile = fileContent => {
+        return new Promise((resolve, reject) => {
+            fs.writeFile('./dist/index.html', fileContent, err => {
+                if(err) {
+                    reject(err);
+                    return;
+                }
+                resolve({
+                    ok: true,
+                    message: 'File created!'
+                });
+            });
+        });
+    };
 
 
 getManager()
