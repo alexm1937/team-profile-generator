@@ -5,7 +5,6 @@ const Manager = require('./lib/Manager');
 const Engineer = require('./lib/Engineer');
 const Intern = require('./lib/Intern');
 const generatePage = require('./src/pageTemplate');
-//const testData = require('./src/testData');
 
 const employees = [];
 

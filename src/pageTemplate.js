@@ -26,7 +26,7 @@ function generateCards(employees) {
         }
 
         cards.push(`<div class="col">
-                <div class="card m-2"">
+                <div class="card m-2">
                 <div class="card-header">
                 ${employee.name} 
                 </div>        
